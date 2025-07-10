@@ -1,56 +1,90 @@
-let search_btn = document.querySelector(".Search_btn")
-let input = document.querySelector(".input")
-let fName = document.querySelector(".FullName p")
-let borderNames = document.querySelector(".Borders p")
-let capitalName = document.querySelector(".Capital p")
-let CurrencyName = document.querySelector(".Currency p")
-let countryFlag = document.querySelector(".Flag img")
+let search_btn = document.querySelector(".Search_btn");
+let input = document.querySelector(".input");
+let fName = document.querySelector(".FullName p");
+let borderNames = document.querySelector(".Borders p");
+let capitalName = document.querySelector(".Capital p");
+let CurrencyName = document.querySelector(".Currency p");
+let countryFlag = document.querySelector(".Flag img");
+let recentContainer = document.getElementById("recentSearches");
 
 
-const fetchCountries = async (searchInput) => {
-  let data = await fetch(`https://restcountries.com/v3.1/name/${searchInput}`);
-  let response = await data.json();
 
-  let key = Object.keys(response[0].currencies)[0]; // Geting value from currencies object
+let recentCountries = [];
+
+
+function displayCountryData(response) {
+
+  // Currency
+  let key = Object.keys(response.currencies)[0];
+
   CurrencyName.innerHTML = key;
 
-  let FlagImgsrc = response[0].flags.png;     // Flag
-  countryFlag.src = FlagImgsrc;
+  // Flag
+  countryFlag.src = response.flags.png;
 
+  // Full Name
+  response.altSpellings.forEach(item => {
+    fName.innerHTML = item;
+  })
+    ;
 
-  let fullName = response[0].altSpellings;   // Country Full Name
-  fullName.forEach(name => {
-    fName.innerHTML = name;
-  });
+  // Borders
+  let borders = response.borders;
 
-  let borders = response[0].borders;       // Country borders
+  // Country borders
   let borderString = '';
   for (let i = 0; i < borders.length; i++) {
     borderString += borders[i] + " ";
     borderNames.innerHTML = borderString;
   }
 
-  response[0].capital.forEach(item => {      // Capital Name
-    capitalName.innerHTML = item;
-  });
-
-
-
+  // Capital
+  capitalName.innerHTML = response.capital?.[0];
 }
 
+// Function to update recent search boxes
+function updateRecentSearches(countryName, countryData) {
 
+
+  recentCountries = recentCountries.filter(item => item.name !== countryName);
+
+  recentCountries.unshift({ name: countryName, data: countryData });
+
+  if (recentCountries.length > 4) recentCountries.pop();
+
+
+  recentContainer.innerHTML = `<h3 class="text-black text-2xl font-bold mb-2">Recent Searches</h3>`;
+
+  recentCountries.forEach((item) => {
+    let box = document.createElement('div');
+    box.innerHTML = `<p class="text-base text-gray-900 font-semibold">${item.name}</p>`;
+    box.addEventListener("click", () => displayCountryData(item.data));
+    recentContainer.appendChild(box);
+    box.className = "w-full bg-white/70 p-4 rounded-lg shadow-md border border-gray-300 relative cursor-pointer hover:bg-white/90 transition";   // styling
+  })
+}
+
+// Fetch country data from API
+const fetchCountries = async (searchInput) => {
+  let data = await fetch(`https://restcountries.com/v3.1/name/${searchInput}`);
+  let response = await data.json();
+
+  let countryData = response[0];
+
+  // Display and store
+  displayCountryData(countryData);
+  updateRecentSearches(countryData.name.common, countryData);
+};
+
+// On search button click
 search_btn.addEventListener("click", () => {
-  let searchInput = input.value;
+  let searchInput = input.value.trim();
 
   if (!searchInput) {
-    alert("Please ENter the country");
+    alert("Please enter a country name.");
     return;
   }
+
   fetchCountries(searchInput);
-})
-
-
-
-
-
-
+  input.value = ""; // clear input
+});
