@@ -88,4 +88,7 @@ search_btn.addEventListener("click", () => {
   fetchCountries(searchInput);
   input.value = ""; // clear input
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> e77efdb (Use tailwind css and add some more features like "Recent Searches")
