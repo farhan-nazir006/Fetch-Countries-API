@@ -4,82 +4,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
   <link rel="stylesheet" href="./src/output.css">
   <title>Country info finder</title>
-=======
-  <title>Country info finder</title>
-  <link rel="stylesheet" href="./src/output.css">
->>>>>>> e77efdb (Use tailwind css and add some more features like "Recent Searches")
 </head>
 
 <body>
   <div class="Container w-full h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white">
     <div class="p-4 flex flex-col gap-1 justify-center items-center">
+      <div class="Container w-full h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white">
+        <div class="p-4 flex flex-col gap-1 justify-center items-center">
+          <h3 class="text-4xl md:text-lg font-bold mb-4">🌏 Country info finder</h3>
+          <div class="flex items-center justify-center">
+            <div class="w-full flex justify-center items-center">
+              <input
+                class="input min-w-0 flex-auto rounded-md  bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-white-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
+                type="text" id="countryInput" placeholder="Type a country..." />
+              <button
+                class="Search_btn flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer">Search</button>
+            </div>
+          </div>
 
-<<<<<<< HEAD
-=======
-  <div class="Container w-full h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white">
-    <div class="p-4 flex flex-col gap-1 justify-center items-center">
+          <!-- Data Display Section -->
+          <section
+            class="w-[50%] h-[70%] mt-6 flex justify-between flex-wrap gap-x-6 bg-white/80 backdrop-blur-md shadow-2xl rounded-xl p-6 overflow-y-auto border border-gray-200">
+            <div>
+              <div class="FullName mb-4">
+                <h4 class="text-lg font-semibold text-gray-700">Full Name:</h4>
+                <p class="text-base text-gray-900">N/A</p>
+              </div>
 
->>>>>>> e77efdb (Use tailwind css and add some more features like "Recent Searches")
-      <h3 class="text-4xl md:text-lg font-bold mb-4">🌏 Country info finder</h3>
-      <div class="flex items-center justify-center">
-        <div class="w-full flex justify-center items-center">
-          <input
-            class="input min-w-0 flex-auto rounded-md  bg-white/5 px-3.5 py-2 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-white-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6"
-            type="text" id="countryInput" placeholder="Type a country..." />
-          <button
-            class="Search_btn flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer">Search</button>
+              <!-- Flag -->
+              <div class="Flag Flagmb-4">
+                <h4 class="text-lg font-semibold text-gray-700">Flag:</h4>
+                <img src="https://flagcdn.com/w320/de.pn" alt="Country Flag"
+                  class="w-40 mt-2 rounded shadow-md border border-gray-300">
+              </div>
+
+              <!-- Capital -->
+              <div class="Capital mb-4">
+                <h4 class="text-lg font-semibold text-gray-700">Capital:</h4>
+                <p class="text-base text-gray-900">N/A</p>
+              </div>
+
+              <!-- Borders -->
+              <div class="Borders mb-4">
+                <h4 class="text-lg font-semibold text-gray-700">Borders:</h4>
+                <p class="text-base text-gray-900">N/A</p>
+              </div>
+
+              <!-- Currency -->
+              <div class="Currency">
+                <h4 class="text-lg font-semibold text-gray-700">Currency:</h4>
+                <p class="text-base text-gray-900">N/A</p>
+              </div>
+            </div>
+
+            <!-- Recent Searches -->
+            <div id="recentSearches" class="flex flex-col items-start gap-4 w-[45%]">
+              <h3 class="text-black text-2xl font-bold mb-2">Recent Searches</h3>
+            </div>
+          </section>
         </div>
       </div>
-
-      <!-- Data Display Section -->
-      <section
-        class="w-[50%] h-[70%] mt-6 flex justify-between flex-wrap gap-x-6 bg-white/80 backdrop-blur-md shadow-2xl rounded-xl p-6 overflow-y-auto border border-gray-200">
-        <div>
-          <div class="FullName mb-4">
-            <h4 class="text-lg font-semibold text-gray-700">Full Name:</h4>
-            <p class="text-base text-gray-900">N/A</p>
-          </div>
-
-          <!-- Flag -->
-          <div class="Flag Flagmb-4">
-            <h4 class="text-lg font-semibold text-gray-700">Flag:</h4>
-            <img src="https://flagcdn.com/w320/de.pn" alt="Country Flag"
-              class="w-40 mt-2 rounded shadow-md border border-gray-300">
-          </div>
-
-          <!-- Capital -->
-          <div class="Capital mb-4">
-            <h4 class="text-lg font-semibold text-gray-700">Capital:</h4>
-            <p class="text-base text-gray-900">N/A</p>
-          </div>
-
-          <!-- Borders -->
-          <div class="Borders mb-4">
-            <h4 class="text-lg font-semibold text-gray-700">Borders:</h4>
-            <p class="text-base text-gray-900">N/A</p>
-          </div>
-
-          <!-- Currency -->
-          <div class="Currency">
-            <h4 class="text-lg font-semibold text-gray-700">Currency:</h4>
-            <p class="text-base text-gray-900">N/A</p>
-          </div>
-        </div>
-
-        <!-- Recent Searches -->
-        <div id="recentSearches" class="flex flex-col items-start gap-4 w-[45%]">
-          <h3 class="text-black text-2xl font-bold mb-2">Recent Searches</h3>
-        </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> e77efdb (Use tailwind css and add some more features like "Recent Searches")
-      </section>
     </div>
-
-  </div>
-  <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
